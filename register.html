@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>账号注册 | 淘宝网</title>
+
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/register.css">
+    <link rel="icon" href="favicon.ico">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <!-- 头部信息 -->
+    <div id="head-wrap">
+        <div id="headMessage" class="clearfix leater">
+            <ul class="fl">
+                <li>
+                    <span>中国大陆</span>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <a href="login.html" class="login mr7">亲，请登录</a>
+                    <a href="register.html">免费注册</a>
+                </li>
+            </ul>
+            <ul class="fr">
+                <li>
+                    <a href="#">我的淘宝</a>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <span class="iconfont mr5 c4">&#xe61e;</span>
+                    <a href="#">购物车</a>
+                    <strong>0</strong>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="iconfont mr5">&#xe608;</span><span class="store">收藏夹</span>
+                    </a>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <a href="#">商品分类</a>
+                </li>
+                <li class="line">|</li>
+                <li>
+                    <a href="#">千牛商家中心</a>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <a href="#">联系客服</a>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+                <li>
+                    <span class="iconfont c4 more">&#xe60c;</span>
+                    <a href="#">网站导航</a>
+                    <span class="iconfont arrow">&#xe613;</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- logo -->
+    <div id="logo">
+        <div class="leater clearfix logowrap">
+            <h1 class="logobox">
+                <i class="iconfont">&#xe619;</i>
+            </h1>
+            <h2>用户注册</h2>
+        </div>
+    </div>
+
+    <!-- nav -->
+    <div class="steps steps-4 leater">
+        <ol>
+            <li class="active"><i>1</i><span class="tsl">设置账号</span></li>
+            <li><i>2</i><span class="tsl">填写密码</span></li>
+            <li><i>3</i><span class="tsl">设置性别</span></li>
+            <li><i>4</i><span class="tsl">注册成功</span></li>
+        </ol>
+        <div class="tsl-switcher">
+            <a href="#" class="current">中文</a> |
+            <a href="#">English</a>
+        </div>
+    </div>
+
+    <!-- content -->
+    <div id="content" class="leater clearfix">
+        <div class="username none">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span4">
+
+                    </div>
+                    <div class="span4 center">
+                        <form>
+                            <fieldset>
+                                <legend>账号</legend><br /><input type="text" data-index="0"/> 
+                                <span class="help-block">字母开头，可包含数字、字母，6-12位</span><br />
+                                <button class="btn btn-success" type="button" data-wrap="username">下一步</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="span4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="password none">
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <form>
+                            <fieldset>
+                                <legend>设置密码</legend><br /><input type="text"  data-index="1"/>
+                                 <span class="help-block">字母开头、可包含数字、字母、下划线，6-12位</span><br />
+                                <legend>确认密码</legend><br /><input type="text" data-index="2"/>
+                                <span class="help-block">请确认密码</span><br/>
+                                
+                            </fieldset>
+                            <br>
+                            <button class="btn btn-success" type="button" data-wrap="password">下一步</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sex none">
+                <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <form>
+                                    <fieldset>
+                                        <legend>性别</legend> <label class="radio"><input type="radio" name="sex" data-index="3"/>男</label>
+                                        <label class="radio"><input type="radio" name="sex"  data-index="4"/>女</label>
+                                        <span class="help-block">请选择性别</span><br/>
+                                         <button class="btn" type="button" data-wrap="sex" >下一步</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="ok none">
+            <h2>恭喜注册成功！</h2><br/>
+            <span class="help-block">3秒后自动跳转</span>
+            <button class="btn btn-success" data-wrap="ok">跳转至首页</button>
+            
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer leater">
+        <div class="footer-hd">
+            <p>
+                <a href="//page.1688.com/shtml/about/ali_group1.shtml">阿里巴巴集团</a>
+                <b>|</b>
+                <a href="//www.alibaba.com">阿里巴巴国际站</a>
+                <b>|</b>
+                <a href="//www.1688.com">阿里巴巴中国站</a>
+                <b>|</b>
+                <a href="//www.aliexpress.com">全球速卖通</a>
+                <b>|</b>
+                <a href="//www.taobao.com">淘宝网</a>
+                <b>|</b>
+                <a href="//www.tmall.com">天猫</a>
+                <b>|</b>
+                <a href="//ju.taobao.com">聚划算</a>
+                <b>|</b>
+                <a href="//www.etao.com">一淘</a>
+                <b>|</b>
+                <a href="//www.alimama.com">阿里妈妈</a>
+                <b>|</b>
+                <a href="//www.aliyun.com">阿里云计算</a>
+                <b>|</b>
+                <a href="//www.yunos.com">云OS</a>
+                <b>|</b>
+                <a href="//www.net.cn">万网</a>
+                <b>|</b>
+                <a href="//www.alipay.com">支付宝</a>
+            </p>
+        </div>
+        <div class="footer-bd">
+            <p>
+                <a href="//www.taobao.com/about">关于淘宝</a>
+                <a href="//www.taobao.com/about/partners.php">合作伙伴</a>
+                <a href="//pro.taobao.com">营销中心</a>
+                <a href="//service.taobao.com/support/main/service_route.htm">联系客服</a>
+                <a href="//open.taobao.com">开放平台</a>
+                <a href="//www.taobao.com/about/join.php">诚征英才</a>
+                <a href="//consumerservice.taobao.com/contact-us">联系我们</a>
+                <a href="//www.taobao.com/sitemap.php">网站地图</a>
+                <a
+                    href="//terms.alicdn.com/legal-agreement/terms/suit_bu1_taobao/suit_bu1_taobao201703241622_61002.html">法律声明及隐私权政策</a>
+                <em>© 2019 Taobao.com 版权所有</em>
+            </p>
+            <p>
+                <span>网络文化经营许可证：<a
+                        href="//img.alicdn.com/tps/i4/T1ysdvXtNeXXcPpEkQ-972-636.jpg">文网文[2010]040号</a></span>
+                <b>|</b>
+                <span>增值电信业务经营许可证：浙B2-20080224-1</span>
+                <b>|</b>
+                <span>信息网络传播视听节目许可证：1109364号</span>
+            </p>
+        </div>
+        <div class="footer-ft">
+            <a href="//www.pingpinganan.gov.cn/web/index.aspx?file=index.aspx"><img width="36" height="36"
+                    src="//img.alicdn.com/tps/i1/T1FeW3XXNfXXXXXXXX-36-36.gif"></a>
+            <a href="//idinfo.zjaic.gov.cn/bscx.do?method=hddoc&amp;id=33018400000067" class="mod mod-a"></a>
+            <a href="//idinfo.zjaic.gov.cn/bscx.do?&amp;method=hddoc&amp;id=33018400000067" class="mod mod-b"></a>
+            <a href="//www.theclimategroup.org.cn/about/friend" class="mod mod-c"></a>
+            <a href="https://ss.cnnic.cn/verifyseal.dll?&amp;sn=2010062300100001357&amp;pa=20100701"
+                class="mod mod-d"></a>
+            <a href="//www.ppaaol.com/verifySite.do?id=1051" class="mod mod-e"></a>
+        </div>
+        <div class="footer-toy"></div>
+
+        <div id="server-num" style="color:#FFF;font-size:11px;text-align:center">register011131073138.na62</div>
+    </div>
+</body>
+<script>
+$(function(){
+    // 先禁用按钮，避免不输入也能下一步
+    $("button").attr("disabled","true");
+    // 声明中间值
+    let flag = false;
+    let reg = /^[A-Za-z][A-Za-z0-9]{5,11}$/;//用户名验证
+    let reg1 = /^[A-Za-z][A-Za-z0-9_]{5,11}$/; //密码验证
+    // 输入框事件
+    $("input").on("input",function(){
+        // 自定义index
+        let index = $(this).attr("data-index")
+        let ipt1 = $("input").eq(0).val();
+        let ipt2 = $('input').eq(1).val();
+        let ipt3 = $('input').eq(2).val(); 
+        if(reg.test(ipt1) && reg1.test(ipt2) && ipt2 == ipt3){
+            flag = true;
+            // console.log(flag);
+        } 
+       setTimeout(function(){
+        if(reg.test(ipt1)){
+            $('.help-block').eq(0).css({"color":"green"}).html("账号验证通过");
+            $("button").eq(0).removeAttr("disabled");
+        }else{
+            $('.help-block').eq(0).css({"color":"red"}).html("验证失败");
+            $("button").eq(0).attr("disabled","true");
+        }
+        if(reg1.test(ipt2)){
+            $('.help-block').eq(1).css({"color":"green"}).html("密码验证通过");
+            $("button").eq(1).removeAttr("disabled");
+        }else{
+            $('.help-block').eq(1).css({"color":"red"}).html("验证失败");
+            $("button").eq(1).attr("disabled","true");
+        }
+        if(ipt2 == ipt3){
+            $('.help-block').eq(2).css({"color":"green"}).html("密码一致，通过验证");
+            $("button").eq(1).removeAttr("disabled");
+        }else{
+            $('.help-block').eq(2).css({"color":"red"}).html("验证失败");
+            $("button").eq(1).attr("disabled","true");
+        }
+        if($('input').eq(3).prop("checked")){
+            $('.help-block').eq(3).css({"color":"green"}).html("来啦，老弟儿！");
+            $("button").eq(2).removeAttr("disabled");
+        }else if($('input').eq(4).prop("checked")){
+            $('.help-block').eq(3).css({"color":"green"}).html("来啦？老妹儿！");
+            $("button").eq(2).removeAttr("disabled");
+        } else{
+            $("button").eq(2).attr("disabled","true");
+        }
+       },300)   
+    })
+
+    $("button").eq(2).click(function(){
+        let ipt1 = $("input").eq(0).val();
+        let ipt2 = $('input').eq(1).val();
+        let wrapName = $(this).attr("data-wrap");
+        if(flag){
+            $.ajax({
+                type:"GET",
+                url:"http://jx.xuzhixiang.top/ap/api/reg.php",
+                data:{
+                    username:ipt1,
+                    password:ipt2
+                },
+                success:function(res){
+                    let data = JSON.parse(res);
+                    console.log(data)
+                    if(data.code == "0"){
+                        alert(data.msg)
+                        location.reload();
+                    }else if(data.code == "1"){
+                        $("button").eq(3).removeAttr("disabled")
+                        setTimeout(function(){
+                            location.href = "login.html";
+                        },3000)
+                    }
+                }
+            })
+        }
+    })
+
+    $("button").click(function(){
+        let wrapName = $(this).attr("data-wrap");
+        let index = $(this).attr("data-index");
+        $("."+wrapName).next().css({"display":"block"}).siblings().css({"display":"none"});
+        $(".active").next().addClass("active").siblings().removeClass("active");
+        // console.log($("li").eq(index))
+    })
+    $("button").eq(3).click(function(){
+        location.href = "login.html";
+    })
+
+})
+</script>
+</html>

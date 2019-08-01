@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>购物车列表</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/js-cookie.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.19.0/axios.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row page-header">
+        <h1 class="">购物车列表</h1>
+        <span>全选：<input type="checkbox" id="all"></span>
+        <span>总金额：￥<span class="allPrice"></span></span>
+    </div>
+    <div class="row">
+        <ul class="col-sm-12">
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    //购物车列表接口
+    let cartListApi = `http://jx.xuzhixiang.top/ap/api/cart-list.php`;
+    let setCartApi = `http://jx.xuzhixiang.top/ap/api/cart-update-num.php`;
+    let removeCartApi = `http://jx.xuzhixiang.top/ap/api/cart-delete.php`;
+    //获取购物车列表数据
+    let oUl = document.getElementsByTagName("ul")[0];
+    //获取用户ID(token)
+    let token = localStorage.getItem("uid");
+    let num = document.getElementsByClassName("num");
+    // console.log(num);
+    getCartList();
+    let plus = document.getElementsByClassName("plus");
+    let minus = document.getElementsByClassName("minus");
+    let del = document.getElementsByClassName("del");
+    let all = document.getElementById("all");
+    let check = document.getElementsByClassName("price");
+    let allPrice = document.getElementsByClassName("allPrice")[0];
+    // console.log(check);
+    // console.log(plus)
+
+    //全选按钮
+    all.onclick = function(){
+       for (let i = 0; i < check.length; i++){
+           check[i].checked = !!this.checked;
+           countPrice();
+       }
+    };
+
+    //加减 ,删除按钮
+
+    oUl.onclick = function(evt){
+        // console.log(oUl)
+    //    单选按钮
+        if(evt.target.classList.contains('price')){
+            console.log(11,evt.target.checked);
+            let checkS = document.querySelectorAll(".price");
+            let checkArr = [...checkS];
+            let flag = checkArr.every(v=>v.checked==true);
+            all.checked = flag;
+            countPrice();
+        }
+    //    删除按钮
+        if(evt.target.classList.contains('del')){
+            let pid = evt.target.getAttribute('data-pid');
+            let pItem = dataSource.find(v=>v.pid==pid);
+            let pnum = pItem.pnum;
+            axios.get(removeCartApi,{params:{uid:token,pid}})
+                .then(res=>{
+                    console.log(res);
+                    dataSource = dataSource.filter(v=>v.pid!==pid);
+                    evt.target.parentNode.parentNode.remove();
+                    countPrice();  
+                })
+                
+        }
+
+    //    加按钮
+        if(evt.target.classList.contains('plus')){
+            let pid = evt.target.getAttribute('data-pid');
+            console.log(pid);
+            let pItem = dataSource.find(v=>v.pid==pid);
+            console.log(pItem);
+            let pnum = ++pItem.pnum;
+            
+            axios.get(setCartApi,{params:{uid:token,pid,pnum}})
+                .then(res =>{
+                    console.log(res);
+                    // console.log(evt.target.nextElementSibling)
+                    evt.target.nextElementSibling.value = pnum;
+                    evt.target.parentNode.nextElementSibling.innerHTML =  `￥<span class="oPrice">${pItem.pprice * pItem.pnum} </span>`
+                })
+                countPrice();
+        }
+
+
+
+    //    减按钮
+        if(evt.target.classList.contains('minus')) {
+            let pid = evt.target.getAttribute('data-pid');
+            console.log(pid);
+            let pItem = dataSource.find(v => v.pid == pid);
+            console.log(pItem);
+            let pnum = --pItem.pnum;
+            if(pItem.pnum < 1){
+                axios.get(removeCartApi,{params:{uid:token,pid}})
+                .then(res=>{
+                    console.log(res);
+                    dataSource = dataSource.filter(v=>v.pid!==pid)
+                    evt.target.parentNode.parentNode.remove();
+                })
+            }
+            axios.get(setCartApi, {params: {uid: token, pid, pnum}})
+                .then(res => {
+                    console.log(res);
+                    // console.log(evt.target.nextElementSibling)
+                    evt.target.previousElementSibling.value = pnum;
+                    evt.target.parentNode.nextElementSibling.innerHTML =  `￥<span class="oPrice">${pItem.pprice * pItem.pnum} </span>`
+                })
+                countPrice();
+        }
+        };
+
+    for(let j = 0; j < num.length; j++){
+        num[j].onblur = function (){
+            console.log("aa")
+        }
+    }
+
+
+    //封装价格改变函数
+
+    function countPrice(){
+        let checkS = document.querySelectorAll('.price');
+        let checkArr = [...checkS];
+        let selectedCheck = checkArr.filter(v=>v.checked === true);
+        console.log(selectedCheck);
+        let count = 0;
+        for (let i = 0; i < selectedCheck.length; i++){
+            let cb = selectedCheck[i];
+            let pid = cb.getAttribute('data-pid');
+            let pItem = dataSource.find(v=>v.pid===pid)
+            let n = pItem.pnum * pItem.pprice;
+            count += n;
+        }
+        console.log(count);
+        allPrice.innerHTML =  count;
+    }
+
+    //封装获取列表方法
+    let dataSource = [];
+    function getCartList() {
+        $.ajax({
+            type:"GET",
+            url:cartListApi,
+            data:{id:token},
+            success:res=>{
+                let data = JSON.parse(res);
+            console.log(data);
+            let arr = data.data.map(v =>
+                `
+            <li class="list-group-item row" style="line-height: 100px;margin-bottom: 10px">
+                <span class="col-sm-2">
+                <img src=${v.pimg} alt="" class="img-thumbnail" style="height: 80px">
+                </span>
+                <span class="col-sm-2" style="white-space: nowrap;text-overflow:ellipsis;width: 94px;overflow: hidden" >
+                    ${v.pname}
+                </span>
+                <span class="col-sm-1">${v.pprice}</span>
+                <span class="col-sm-3">
+                <button class="btn btn-success plus"  data-pid="${v.pid}">+</button>
+                <input type="text" class="input-sm num"  data-pid="${v.pid}" value="${v.pnum}"/>
+                <button class="btn btn-danger minus" data-pid="${v.pid}">-</button>
+                
+                </span>
+                <span class="col-sm-2">
+                    ￥<span data-pid="${v.pid}">${v.pprice * v.pnum} </span>
+                </span>
+                <span class="col-sm-1">
+                <button class="btn btn-danger del" data-pid="${v.pid}">删除</button></span>
+                <span class="col-sm-1">选中：<input type="checkbox" class="price" data-pid="${v.pid}"></span>
+            </li>`);
+            oUl.innerHTML = arr.join('');
+            dataSource = data.data;
+        }})
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>注册管理员</title>
+    <link rel="icon" href="../favicon.ico">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <p>username:<input type="text" class="form-control"></p>
+            <p>password:<input type="text" class="form-control"></p>
+            <p><button class="btn btn-success">注册</button></p>
+        </div>
+    </div>
+    <script>
+        let inputS = document.getElementsByTagName("input");
+        let btn = document.getElementsByTagName("button")[0];
+        let sex = document.getElementsByName("sex");
+        let RegApi = "http://47.104.244.134:8080/usersave.do";
+        let sexVal = "";
+
+        //获取单选框value
+        for (var i = 0; i < sex.length; i++) {
+            sex[i].onclick = function () {
+                sexVal = this.value;
+            }
+        }
+
+
+
+        //创建注册点击事件
+        btn.onclick = function () {
+
+            // console.log(sexVal);
+            let params = {
+                username: inputS[0].value,
+                password: inputS[1].value,
+            };
+
+            $.ajax({
+                type: "GET",
+                url: "http://jx.xuzhixiang.top/ap/api/reg.php",
+                data: {
+                    params: params
+                },
+                success: res => {
+                    console.log(res);
+                    if (res.data.code === 1) {
+                        alert(res.data.msg);
+                        location.href = 'login.html'
+                    }
+                }
+            })
+
+        }
+    </script>
+</body>
+
+</html>

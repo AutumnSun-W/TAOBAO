@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理员登录</title>
+    <link rel="icon" href="../favicon.ico">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/js-cookie.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <p>username:<input type="text" class="form-control"></p>
+            <p>password:<input type="text" class="form-control"></p>
+
+            <p><button class="btn btn-success">登录</button></p>
+        </div>
+    </div>
+    <script>
+        let inputS = document.getElementsByTagName("input");
+        let btn = document.getElementsByTagName("button")[0];
+        btn.onclick = function () {
+            let params = {
+                username: inputS[0].value,
+                password: inputS[1].value
+            };
+            $.ajax({
+                type: "GET",
+                url: "http://jx.xuzhixiang.top/ap/api/login.php",
+                data:params,
+                success: res => {
+                    let data = JSON.parse(res);
+                    console.log(data)
+                    if (data.code == 1) {
+                        if (inputS[0].value !== "" && inputS[1].value !== "") {
+
+                            Cookies.set("token",data.data.id, {
+                                expires: 7
+                            });
+                            Cookies.set("username",data.data.username, {
+                                expires: 7
+                            });
+                            alert(data.msg);
+                            location.href = 'index.html';
+                        }
+                    }else{
+                        alert(data.msg)
+                    }
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

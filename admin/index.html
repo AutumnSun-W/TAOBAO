@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>淘宝商城后台</title>
+    <link rel="icon" href="../favicon.ico">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"
+        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/js-cookie.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="modal fade" id="addItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">
+                            添加商品
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="addName" class="control-label">商品名称:</label>
+                                <input type="text" class="form-control" id="addName">
+                            </div>
+                            <div class="form-group">
+                                <label for="addImg" class="control-label">商品图片:</label>
+                                <textarea class="form-control" id="addImg"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="addTitle" class="control-label">商品描述:</label>
+                                <textarea class="form-control" id="addTitle"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="addPrice" class="control-label">商品价格:</label>
+                                <textarea class="form-control" id="addPrice"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="addItemBtn">添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="removeItem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel1">
+                            删除商品
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="removeId" class="control-label">商品ID:</label>
+                                <input type="text" class="form-control" id="removeId">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                        <button type="button" class="btn btn-primary" id="removeItemBtn">删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <p class="page-header">
+
+            </p>
+        </div>
+        <div class="row">
+            <ul class="col-sm-6 list">
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        let span = document.getElementsByTagName("span")[0];
+        let token = Cookies.get('token');
+        let username = Cookies.get('username');
+        let list = document.getElementsByTagName("ul")[0];
+        let headP = document.getElementsByClassName("page-header")[0];
+        let psize = 30,
+            num = 0;
+        //将获取首页列表的方法封装
+        let getIndex = function () {
+            let params = {
+                pagesize: psize,
+                pagenum: num,
+                uid: token
+            };
+            $.ajax({
+                type: "GET",
+                url: "http://jx.xuzhixiang.top/ap/api/productlist.php",
+                data: params,
+                success: res => {
+                    
+                    let data = JSON.parse(res).data;
+                    console.log(data);
+                    //遍历商品列表
+                    let str = "";
+                    for (let i = 0; i < data.length; i++) {
+                        // console.log(data[i]);
+                        str += `
+                        <li class="list-group-item" style="margin-bottom: 10px" id="listItem">
+                    <p class="modal-title">${data[i].pname}</p>
+                    <p class="text-center">${data[i].pdesc}</p>
+                    <p class="text-center"><img src= ${data[i].pimg} alt=""
+                    style="width: 300px;"></p>
+                    <p class="text-center">${data[i].pprice}</p>
+                    <p class="text-center"><button type="button" class="btn btn-danger del" data-pid="${data[i].pid}">删除</button></p>
+                </li>
+                    `
+                    }
+                    list.innerHTML = str;
+                    let listitem = list.children;
+                    let del = document.getElementsByClassName('del');
+                    console.log(del);
+                    for (let j = 0; j < del.length; j++) {
+                        del[j].onclick = function () {
+                            let pid = this.getAttribute('data-pid');
+                            let params = {
+                                pid: pid
+                            };
+                            $.ajax({
+                                type: "GET",
+                                url: removeApi,
+                                data: params,
+                                success: data => {
+                                    getIndex();
+                                    // console.log(data)
+                                }
+                            })
+                        }
+                    }
+                }
+            });
+        }
+            //判断cookie中是否存有token令牌
+            if (token) {
+                //管理员权限操作
+
+                //展示管理员dom
+                headP.innerHTML = `
+            欢迎管理员：${token} 登录
+            <button type="button super" class="btn btn-success"
+            data-toggle="modal" data-target="#addItem">添加商品</button>
+            <button type="button super" class="btn btn-danger"
+            data-toggle="modal" data-target="#removeItem">删除商品</button>
+            <button type="button super" class="btn btn-danger outLogin">退出</button>`;
+
+                //展示首页
+                getIndex();
+
+                let superBtn = headP.children;
+
+                //获取添加商品模态框添加按钮
+                let addItem = document.getElementById("addItemBtn");
+                let removeItem = document.getElementById("removeItemBtn");
+                let outLogin = document.getElementsByClassName('outLogin')[0];
+
+                //退出登录事件
+                outLogin.onclick = function () {
+                    Cookies.set("token", "", {
+                        expires: -7
+                    });
+                    alert("请重新登录");
+                    location.href = "login.html";
+                };
+
+
+
+                // 添加商品的事件
+
+                addItem.onclick = function () {
+                    let imgSrc = addImg.value,
+                        titleVal = addTitle.value,
+                        price = addPrice.value,
+                        name = addName.value;
+                    let params = {
+                        pimg: imgSrc,
+                        pname: name,
+                        pprice: price,
+                        pdesc: titleVal,
+                        uid: token
+                    };
+                    console.log(params);
+                    $.ajax({
+                        type: "GET",
+                        url: "http://jx.xuzhixiang.top/ap/api/goods/goods-add.php",
+                        data: params,
+                        success: res => {
+                            getIndex();
+                            alert("添加成功")
+                            // console.log(res);
+                        }
+                    })
+                };
+
+                //删除商品的事件
+
+                removeItem.onclick = function () {
+                    let pid = removeId.value;
+                    // console.log(pid);
+                    let params = {
+                        pid: pid
+                    }
+                    $.ajax({
+                        type: "GET",
+                        url: removeApi,
+                        data: params,
+                        success: data => {
+                            getIndex();
+                            // console.log(data)
+                        }
+                    })
+                }
+            }else {
+            //用户权限操作
+            alert("请登录");
+            location.href = "login.html";
+            }
+         
+    </script>
+</body>
+
+</html>

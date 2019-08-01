@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>淘宝网！淘！我喜欢</title>
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1171260_3s8yrz7aqw2.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="favicon.ico">
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header" class="clearfix">
+        <div class="logo loginc">
+            <h1>
+                <a href="#" title="淘宝网">
+                    <i class="iconfont icon-taobaowang"></i>
+                </a>
+            </h1>
+            <div class="login-msg error" style="text-align: center;width: 880px; margin: 0 auto;">
+                <p class="error" style="float: none;width: auto;">
+                    为确保您账户的安全及正常使用，依《网络安全法》相关要求，6月1日起会员账户需绑定手机。如您还未绑定，请尽快完成，感谢您的理解及支持！
+                </p>
+            </div>
+            <a href="#" class="link" data-spm-anchor-id="a2107.1.1000340.2">
+                <i class="iconfont">&#xe640;</i> "登录页面"改进建议
+            </a>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="login-newbg">
+            <div class="content-box">
+                <div class="login-box-warp">
+
+                <div class="login-box no-longlogin module-static" id="J_LoginBox">
+                
+                    <div class="hd">
+
+                        <div class="login-switch" onselectstart="return false;">
+                            <i class="iconfont quick icon-erweimadenglu" id="J_1"></i>
+                            <i class="iconfont static icon-diannaodenglu" id="J_2"></i>
+                        </div>
+
+                    </div>
+                    <div class="bd">
+                        <!--标准登录框-->
+                        <div class="static-form " id="J_StaticForm">
+                            <div class="login-title">
+                           密码登录
+                            </div>
+
+                            <form
+                                action="#"
+                                method="post" id="J_Form">
+                                <!-- 手机号登录 -->
+
+                                <div class="field ph-hide username-field">
+                                    <label for="TPL_username_1"> <i class="iconfont" title="会员名">&#xe645;</i></label>
+                                    <input type="text" name="TPL_username"
+                                        id="TPL_username_1" class="login-text J_UserName J_Focused" placeholder="会员名/邮箱/手机号">
+                                  </div>
+
+                                <div class="field pwd-field">
+                                    <label id="password-label" for="TPL_password_1"><i class="icon iconfont"
+                                            title="登录密码"></i></label>
+                                    <span id="J_StandardPwd">
+                                        <input type="password" name="TPL_password" id="TPL_password_1"
+                                            class="login-text" maxlength="40" tabindex="2" autocomplete="off"
+                                            aria-label="登录密码">
+                                    </span>
+                                </div>
+                                <div class="submit">
+
+                                        <button type="button" class="J_Submit">登 录</button>
+                                    </div>
+                                <div class="login-links">
+
+                                    <a href="register.html"
+                                        tabindex="6" class="forget-pwd" target="_blank">
+                                        忘记密码</a>
+
+                                    <a href="register.html"
+                                        target="_blank">忘记会员名</a>
+
+                                    <a href="register.html" class="register"
+                                        target="_blank" tabindex="7">免费注册</a>
+
+                                </div>
+                               
+                            </form>
+                            <ul class="entries">
+                                    <li id="J_OtherLogin" class="other-login">
+                                         
+                                             
+                                                    <a href="#" tabindex="4" class="weibo-login"><i class="iconfont">&#xe68b;</i>微博登录</a>
+                                                 
+                                                    <a href="#" tabindex="5" class="alipay-login"><i class="iconfont">&#xe618;</i>支付宝登录</a> 
+                                             
+                                        
+                                    </li>
+                                </ul>
+                        </div>
+
+                        <!--快速登录开始-->
+                        <div class="quick-form ">
+                            <!--扫码登录开始-->
+                            <div class="qrcode-login qrcode-login-error" id="J_QRCodeLogin" style="display: block;">
+                              
+                                <div class="login-title">手机扫码，安全登录</div>
+
+                                <div class="qrcode-mod">
+                                    <div class="qrcode-main">
+                                        <div class="qrcode-img" id="J_QRCodeImg" style="opacity: 1;"><img
+                                                src="//img.alicdn.com/imgextra/O1CN016mFgZm2MV6fTMOQd5_!!9832-2-xcode.png">
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                    <div class="qrcode-desc" data-spm="25847036">
+                                        <i class="iconfont">&#xe660;</i>
+
+                                        <p>
+                                            <font class="ft-gray">打开 </font>
+                                            <a href="#" target="_blank" class="light-link">手机淘宝</a> | 
+                                            <a href="#" target="_blank" class="light-link">手机天猫</a>
+                                            <span class="ft-gray">扫一扫登录</span>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+                            
+                                <div class="login-links">
+                                    <a href="login.html" class="forget-pwd J_Quick2Static" target="_blank">密码登录</a>
+                                    <a href="register.html" class="register"
+                                        target="_blank">免费注册</a>
+                                </div>
+                            </div>
+                            <!--扫码登录结束-->
+                            <!--一键登录开始-->
+
+                            <!--一键登录结束-->
+                        </div>
+                        <!--快速登录结束-->
+                    </div>
+                </div>
+                <!--标准登录框结束-->
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class="footer loginc">
+        <div class="footer-hd">
+            <p>
+                <a href="http://page.1688.com/shtml/about/ali_group1.shtml">阿里巴巴集团</a>
+                <b>|</b>
+                <a href="http://www.alibaba.com">阿里巴巴国际站</a>
+                <b>|</b>
+                <a href="http://www.1688.com">阿里巴巴中国站</a>
+                <b>|</b>
+                <a href="http://www.aliexpress.com">全球速卖通</a>
+                <b>|</b>
+                <a href="http://www.taobao.com">淘宝网</a>
+                <b>|</b>
+                <a href="http://www.tmall.com">天猫</a>
+                <b>|</b>
+                <a href="http://ju.taobao.com">聚划算</a>
+                <b>|</b>
+                <a href="http://www.etao.com">一淘</a>
+                <b>|</b>
+                <a href="http://www.alimama.com">阿里妈妈</a>
+                <b>|</b>
+                <a href="https://www.fliggy.com">飞猪</a>
+                <b>|</b>
+                <a href="http://www.xiami.com">虾米</a>
+                <b>|</b>
+                <a href="http://www.aliyun.com">阿里云计算</a>
+                <b>|</b>
+                <a href="http://www.yunos.com">云OS</a>
+                <b>|</b>
+                <a href="http://www.net.cn">万网</a>
+                <b>|</b>
+                <a href="http://www.alipay.com">支付宝</a>
+                <b>|</b>
+                <a href="http://www.laiwang.com/">来往</a>
+            </p>
+        </div>
+        <div class="footer-bd">
+            <p>
+                <a href="http://www.taobao.com/about">关于淘宝</a>
+                <a href="http://www.taobao.com/about/partners.php">合作伙伴</a>
+                <a href="http://pro.taobao.com">营销中心</a>
+                <a href="mailto:lianzheng@taobao.com" title="lianzheng@taobao.com" target="_self">廉正举报</a>
+                <a href="http://service.taobao.com/support/main/service_route.htm">联系客服</a>
+                <a href="http://open.taobao.com">开放平台</a>
+                <a href="http://www.taobao.com/about/join.php">诚征英才</a>
+                <a
+                    href="https://consumerservice.taobao.com/contact-us?spm=a21bo.50862.1997523009.35.5dcec6f7zikHQ3">联系我们</a>
+                <a href="http://www.taobao.com/sitemap.php">网站地图</a>
+                <a
+                    href="http://terms.alicdn.com/legal-agreement/terms/suit_bu1_taobao/suit_bu1_taobao201811121436_80276.html">法律声明</a>
+                <a
+                    href="http://terms.alicdn.com/legal-agreement/terms/suit_bu1_taobao/suit_bu1_taobao201703241622_61002.html">隐私权政策</a>
+                <em>© 2019 Taobao.com 版权所有</em>
+            </p>
+            <p>
+                <span>网络文化经营许可证：浙网文[2016]0132-032号</span>
+                <b>|</b>
+                <span>增值电信业务经营许可证：浙B2-20080224-1</span>
+                <b>|</b>
+                <span>信息网络传播视听节目许可证：1109364号</span>
+            </p>
+        </div>
+        <div class="footer-ft">
+            <a href="http://www.pingpinganan.gov.cn/web/index.aspx?file=index.aspx">
+                <img width="36" height="36" src="https://assets.alicdn.com/apps/login/static/css/images/wj.gif">
+            </a>
+            <a href="http://idinfo.zjaic.gov.cn/bscx.do?method=hddoc&amp;id=33018400000067" class="mod mod-a"></a>
+            <a href="http://idinfo.zjaic.gov.cn/bscx.do?&amp;method=hddoc&amp;id=33018400000067" class="mod mod-b"></a>
+            <a href="http://www.theclimategroup.org.cn/about/friend" class="mod mod-c"></a>
+            <a href="https://ss.cnnic.cn/verifyseal.dll?&amp;sn=2010062300100001357&amp;pa=20100701"
+                class="mod mod-d"></a>
+            <a href="http://www.ppaaol.com/verifySite.do?id=1051" class="mod mod-e"></a>
+        </div>
+        <!-- #footer END -->
+        <div id="server-num">login011177036005.center.na610</div>
+
+    </div>
+</body>
+<script>
+$(function(){
+    $("#J_2").click(function(){
+        $("#J_2").css({"display":"none"});
+        $("#J_1").css({"display":"block"}); 
+        $(".static-form").css({"display":"none"});
+        $(".quick-form").css({"display":"block"})
+    })
+    $("#J_1").click(function(){
+        $("#J_1").css({"display":"none"});
+        $("#J_2").css({"display":"block"});   
+        $(".quick-form").css({"display":"none"})
+        $(".static-form").css({"display":"block"})
+    })
+    $(".J_Submit").click(function(){
+        $.ajax({
+            type:"GET",
+            url:"http://jx.xuzhixiang.top/ap/api/login.php",
+            data:{
+                username:$("#TPL_username_1").val(),
+                password:$("#TPL_password_1").val()
+            },
+            success:function(res){
+                let data = JSON.parse(res);
+                console.log(data)
+                if(data.code == "1"){
+                    let uid = data.data.id;
+                    localStorage.setItem("uid",uid);
+                    alert(data.msg);
+                    location.href = "index.html"
+                }else if(data.code == "0"){
+                    alert(data.msg);
+                    location.reload();
+                }
+            }
+        })
+    })
+})
+
+</script>
+
+</html>
